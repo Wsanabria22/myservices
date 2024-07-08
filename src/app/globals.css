@@ -1,6 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Manrope", sans-serif;
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -16,7 +25,142 @@
   }
 }
 
-body {
+@layer components {
+/* START: General styles */
+.max-width {
+  @apply max-w-[1440px] mx-auto;
+}
+
+.padding-x {
+  @apply sm:px-16 px-6;
+}
+
+.padding-y {
+  @apply py-4;
+}
+
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.flex-between {
+  @apply flex justify-between items-center;
+}
+
+.custom-btn {
+  @apply flex flex-row relative justify-center items-center py-2 px-4 outline-none;
+}
+/* END: General styles */
+
+/* START: Hero styles */
+.hero {
+  @apply flex xl:flex-row flex-col items-center gap-5 relative z-0 h-[10%] border mt-[60px];
+}
+
+.hero__title {
+  @apply 2xl:text-[72px] sm:text-[24px] text-[24px] font-extrabold;
+}
+
+.hero__subtitle {
+  @apply text-[17px] font-light mt-5;
+}
+
+.hero__image-container {
+  @apply xl:flex-[1.5] flex justify-end items-end w-[50%] xl:h-[50vh];
+}
+
+.hero__image {
+  @apply relative xl:w-full w-[15%] xl:h-full h-[15%] z-0 mr-16 rounded-full;
+}
+
+.hero__image-overlay {
+  @apply absolute xl:-top-24 xl:-right-1/2 -right-1/4 bg-hero-bg bg-repeat-round -z-10 w-full xl:h-screen h-full overflow-hidden;
+}
+/* END: Hero styles */
+
+/* START: Home styles */
+
+.home__text-container {
+  @apply flex flex-col items-start justify-start gap-y-2.5 text-black-100;
+}
+
+.home__filters {
+  @apply mt-12 w-full flex-between items-center flex-wrap gap-5;
+}
+
+.home__filter-container {
+  @apply flex justify-start flex-wrap items-center gap-2;
+}
+
+.home__service-wrapper {
+  @apply grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-8 pt-14;
+}
+
+.home__error-container {
+  @apply mt-16 flex justify-center items-center flex-col gap-2;
+}
+/* END: Home styles */
+
+/* START: service Card styles */
+.service-card {
+  @apply flex flex-col px-3 py-6 justify-center items-start text-black-100 bg-primary-blue-100 hover:bg-white hover:shadow-md rounded-3xl;
+}
+
+.service-card__content {
+  @apply w-full flex justify-between items-start gap-2;
+}
+
+.service-card__content-title {
+  @apply text-[22px] leading-[26px] font-bold capitalize;
+}
+
+.service-card__price {
+  @apply flex mt-6 text-[24px] font-extrabold;
+}
+
+.service-card__price-dollar {
+  @apply self-start text-[14px] leading-[17px] font-bold;
+}
+
+.service-card__price-session {
+  @apply self-end text-[14px] leading-[17px] font-bold;
+}
+
+.service-card__image {
+  @apply relative w-full h-52 my-3 object-contain;
+}
+
+.service-card__icon-container {
+  @apply flex group-hover:invisible w-full justify-between text-grey;
+}
+
+.service-card__icon {
+  @apply flex flex-col justify-center items-center gap-2;
+}
+
+.service-card__icon-text {
+  @apply text-[14px] leading-[17px];
+}
+
+.service-card__btn-container {
+  @apply hidden group-hover:flex absolute bottom-0 w-full z-10;
+}
+/* END: service Card styles */
+
+/* START: Custom Filter styles */
+.custom-filter__btn {
+  @apply relative w-full min-w-[127px] flex justify-between items-center cursor-default rounded-lg bg-white py-2 px-3 text-left shadow-md sm:text-sm border;
+}
+
+.custom-filter__options {
+  @apply absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm;
+}
+/* END: Custom Filter styles */
+
+}
+
+
+/* body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -24,10 +168,5 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-}
+} */
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
