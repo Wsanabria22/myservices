@@ -22,15 +22,14 @@ export default async function Home() {
     <main className="overflow-hidden">
       <Hero/>
 
-      <div className='mt-12 padding-x padding-y max-width' id='discover'>
+      <div className='mt-1 padding-x padding-y max-width' id='discover'>
         <div className='home__text-container'>
           <h1 className='text-3xl font-extrabold'>Catalogo de servicios</h1>
-          <p>Explore los servicios deseados</p>
         </div>
       </div>
 
       <section>
-          <div className='home__service-wrapper px-4'>
+          <div className='home__service-wrapper px-1'>
             {
               allServices && allServices?.map((service) => (
               <ServiceCard1 key={service._id} service={service} />

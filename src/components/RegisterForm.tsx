@@ -15,7 +15,7 @@ type UserData = {
   origin?: string;
 }
 
-const RegisterForm = () => {
+const RegisterForm: React.FC = () => {
 
   const router = useRouter();
   const [showPass, setShowPass] = useState<boolean>(false);

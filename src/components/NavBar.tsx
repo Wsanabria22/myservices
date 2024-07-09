@@ -49,7 +49,7 @@ const NavBar = () => {
     )
   } else {
     return (
-      <header className="w-full absolute z-10">
+      <header className="w-full absolute z-10 mb-3">
       { session?.user && 
       <nav className="max-w-[1440px] mx-auto flex justify-between items-center sm:px-16 px-3 py-4">
 

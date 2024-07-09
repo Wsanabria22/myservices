@@ -11,27 +11,21 @@ const Hero = () => {
 
   return (
     <div className='hero'>
-      <div className='flex-1 pt-36 padding-x'>
+      <div className='hero__text-container'>
         <h1 className='hero__title'>
           Reserva tus servicios -- facil y rapidamente!
         </h1>
         <p className='hero__subtitle'>
           Disfruta de nuestros servicios sin esfuerzo, agendadolos y pagandolos en linea.
         </p>
-        <CustomButtom
-          title="Explora Nuestros Servicios"
-          containerStyles="bg-primary-blue text-white rounded-full mt-10"
-          handleClick={handleScroll}
-          btnType='button'
-        />
       </div>
       <div className='hero__image-container'>
         <div className='hero__image'>
-          <Image src={heroImage} alt='hero' fill className='object-contain rounded-sm'
+          <Image src={heroImage} alt='hero' fill className='object-contain'
            sizes="(max-width: 768px) 25vw, (max-width: 1200px) 25vw, 25vw"
           />
         </div>
-        <div className='hero__image-overlay'/>
+        {/* <div className='hero__image-overlay'/> */}
       </div>
     </div>
   )
