@@ -1,6 +1,16 @@
 import { Schema, model, models } from 'mongoose';
 
-const LocalUserSchema = new Schema({
+interface ILocalusers {
+  name: string;
+  email: string;
+  password: string;
+  isadmin: boolean;
+  isSocialUser: boolean;
+  origin: string;
+  subId: string;
+}
+
+const LocalUserSchema = new Schema<ILocalusers>({
     name: {
       type: String,
       require: [ true, "El nombre es requerido"],
@@ -37,5 +47,5 @@ const LocalUserSchema = new Schema({
   }
 );
 
-const LocalUser = models.Localuser || model('Localuser', LocalUserSchema);
+const LocalUser = models.Localuser || model<ILocalusers>('Localuser', LocalUserSchema);
 export default LocalUser;

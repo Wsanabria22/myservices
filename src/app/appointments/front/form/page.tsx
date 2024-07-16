@@ -1,6 +1,6 @@
 'use client'
 import { useParams, useRouter } from 'next/navigation';
-import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import React, { MouseEvent, ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useSession, signIn, signOut } from "next-auth/react";
 
 interface Service {
@@ -141,25 +141,25 @@ const FormAppointment = () => {
 
   const getClient = async () => {
     try {
-      const response = await fetch('/api/client/'+session.user.email);
+      const response = await fetch('/api/client/'+session?.user?.email);
       const dataClient = await response.json();
       console.log('dataClient',dataClient)
-      if (dataClient[0]) {
-        setAppointment((prevState: Appointment)=>({...prevState, 
-          user: session.user.name,
-          client: dataClient[0]._id,
-          firstName: dataClient[0].firstName,
-          lastName: dataClient[0].lastName,
-          email: dataClient[0].email,
-          celPhone: dataClient[0].celPhone,
+      if (dataClient) {
+        setAppointment((prevState)=>({...prevState, 
+          user: session?.user?.name,
+          client: dataClient._id,
+          firstName: dataClient.firstName,
+          lastName: dataClient.lastName,
+          email: dataClient.email,
+          celPhone: dataClient.celPhone,
           newUser: false,
           }))
       } else { 
           setAppointment((prevState)=>({...prevState, 
-            user: session.user.name,
-            firstName: session.user.name,
-            lastName: session.user.name,
-            email: session.user.email,
+            user: session?.user?.name,
+            firstName: session?.user?.name,
+            lastName: session?.user?.name,
+            email: session?.user?.email,
             newUser: true,
         }))
       }
@@ -209,6 +209,7 @@ const FormAppointment = () => {
 
   const createClient = async () => {
     try {
+      console.log('appointment',appointment)
       const response = await fetch('/api/clients', {
         method: 'POST',
         body: JSON.stringify(appointment),
@@ -223,6 +224,7 @@ const FormAppointment = () => {
 
   const createAppointment = async () => {
     try {
+      console.log('appointment',appointment);
       const response = await fetch('/api/appointments', {
         method: 'POST',
         body: JSON.stringify(appointment),
@@ -279,7 +281,8 @@ const FormAppointment = () => {
         appointment: newAppointment._id,
         journalStatus: appointment.journalStatus,
       };
-      const response = await fetch('/api/localusers', {
+      console.log('dataJournal',dataJournal);
+      const response = await fetch('/api/journals', {
         method: 'POST',
         body: JSON.stringify(dataJournal),
         headers: {"Content-Type" : "application/json"}
@@ -328,13 +331,13 @@ const FormAppointment = () => {
           }
         }
       }
-      handleBack();
+      // handleBack();
     } catch (error) {
       console.log('Failed to create or update an appointmet', error)
     }
   };
 
-  const handleDelete = async (e) => {
+  const handleDelete = async (e:MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if(window.confirm('Esta seguro de eliminar la cita agendada?')) {
       try {

@@ -64,11 +64,11 @@ import { connectToDB } from '@/utils/database';
     async session({session, token}) {
       session.user = token;
       // if(token.sub && session.user ) session.user.id = token.sub;
-      console.log('callbacksession', {session})
+      // console.log('callbacksession', {session})
       return session;
     },
     async jwt({token, user, account, profile, trigger }) {
-      console.log('callbackjwt', {token}, {user}, {account}, {profile}, {trigger})
+      // console.log('callbackjwt', {token}, {user}, {account}, {profile}, {trigger})
       // return token;
       return { ...token, ...user };
     },
